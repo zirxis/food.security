@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الشراكات الاستراتيجية - منصة الأمن الغذائي الذكية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .partnership-bg {
+            background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .partnership-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('resources/partnership-bg.jpg') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .partnership-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .partner-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .partner-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .impact-metric {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .impact-metric:hover {
+            transform: scale(1.05);
+        }
+        
+        .collaboration-hub {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .collaboration-hub::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .resource-calculator {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .network-node {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: absolute;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            animation: flow 3s ease-in-out infinite;
+        }
+        
+        @keyframes flow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d97706;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .success-story {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            border-left: 4px solid #10b981;
+            transition: all 0.3s ease;
+        }
+        
+        .success-story:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .integration-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+     <!-- Navigation -->
+<nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold text-blue-900">
+                    🌾 منصة الأمن الغذائي الذكية
+                </div>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-8">
+                    <a href="#dashboard" class="nav-link text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium">لوحة التحكم</a>
+                    <a href="crisis-management.html" class="nav-link text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium">إدارة الأزمات</a>
+                    <a href="partnerships.html" class="nav-link text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium">الشراكات</a>
+                    <a href="#analytics" class="nav-link text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium">التحليلات</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-900 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="#dashboard" class="block px-3 py-2 text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-md text-base font-medium">لوحة التحكم</a>
+            <a href="crisis-management.html" class="block px-3 py-2 text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-md text-base font-medium">إدارة الأزمات</a>
+            <a href="partnerships.html" class="block px-3 py-2 text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-md text-base font-medium">الشراكات</a>
+            <a href="#analytics" class="block px-3 py-2 text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-md text-base font-medium">التحليلات</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="partnership-bg pt-24 pb-16">
+        <div class="partnership-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white mb-12">
+                <h1 class="text-5xl font-bold mb-6">الشراكات الاستراتيجية</h1>
+                <p class="text-xl max-w-3xl mx-auto">
+                    التعاون المكثف مع المنظمات الدولية والمحلية لتحقيق أقصى تأثير في مكافحة الجوع وإهدار الطعام
+                </p>
+            </div>
+
+            <!-- Impact Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="impact-metric">
+                    <div class="text-4xl font-bold mb-2" id="partners-count">0</div>
+                    <div class="text-lg mb-2">شريك فعال</div>
+                    <div class="text-sm opacity-90">منظمة دولية ومحلية</div>
+                </div>
+
+                <div class="impact-metric">
+                    <div class="text-4xl font-bold mb-2" id="countries-covered">0</div>
+                    <div class="text-lg mb-2">دولة مشمولة</div>
+                    <div class="text-sm opacity-90">عبر القارات</div>
+                </div>
+
+                <div class="impact-metric">
+                    <div class="text-4xl font-bold mb-2" id="beneficiaries">0</div>
+                    <div class="text-lg mb-2">مستفيد</div>
+                    <div class="text-sm opacity-90">شخص متأثر إيجابياً</div>
+                </div>
+
+                <div class="impact-metric">
+                    <div class="text-4xl font-bold mb-2" id="food-saved">0</div>
+                    <div class="text-lg mb-2">طن طعام</div>
+                    <div class="text-sm opacity-90">تم توفيره من الإهدار</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Partners -->
+    <section id="partnerships" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">شركاؤنا الاستراتيجيون</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    شبكة متكاملة من المنظمات الدولية والمحلية العاملة سوياً لتحقيق الأمن الغذائي
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Win Win Platform -->
+                <div class="partner-card" onclick="openPartnerPlatform('winwin')">
+                    <div class="text-center">
+                        <div class="text-6xl mb-6">🤝</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Win Win</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            منصة عالمية لمشاركة الموارد وتحقيق الفائدة المشتركة في مكافحة إهدار الطعام.
+                            تربط بين الشركات، المطاعم، والمؤسسات الخيرية لتوجيه الفائض الغذائي للمحتاجين.
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">الدول المشمولة:</span>
+                                <span class="font-semibold">45 دولة</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">الطعام الموزع:</span>
+                                <span class="font-semibold">2.3 مليون طن</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">المستفيدون:</span>
+                                <span class="font-semibold">12 مليون شخص</span>
+                            </div>
+                        </div>
+                        <div class="integration-badge">
+                            ✅ تكامل كامل مع المنصة
+                        </div>
+                    </div>
+                </div>
+
+                <!-- نعمة App -->
+                <div class="partner-card" onclick="openPartnerPlatform('namaa')">
+                    <div class="text-center">
+                        <div class="text-6xl mb-6">🍽️</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">تطبيق نعمة</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            تطبيق جزائري رائد لمشاركة الطعام الفائض والتقليل من الإهدار في المجتمع المحلي.
+                            يربط بين الأفراد، المطاعم، والجمعيات الخيرية لتوجيه الطعام الفائض للأسر المحتاجة.
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">الولايات المشمولة:</span>
+                                <span class="font-semibold">48 ولاية</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">الوجبات الموزعة:</span>
+                                <span class="font-semibold">850 ألف وجبة</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">المستخدمون النشطون:</span>
+                                <span class="font-semibold">150 ألف مستخدم</span>
+                            </div>
+                        </div>
+                        <div class="integration-badge">
+                            ✅ تكامل كامل مع المنصة
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAO Partnership -->
+                <div class="partner-card" onclick="openPartnerPlatform('fao')">
+                    <div class="text-center">
+                        <div class="text-6xl mb-6">🌍</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">FAO - المنظمة</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            الشراكة الاستراتيجية مع منظمة الأغذية والزراعة للأمم المتحدة لتبادل البيانات،
+                            الخبرات، وأفضل الممارسات في مجال الأمن الغذائي والتنبؤ المبكر بالأزمات.
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">الدول الأعضاء:</span>
+                                <span class="font-semibold">195 دولة</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">البيانات المشتركة:</span>
+                                <span class="font-semibold">500+ مجموعة بيانات</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">الخبراء المتعاونون:</span>
+                                <span class="font-semibold">1200 خبير</span>
+                            </div>
+                        </div>
+                        <div class="integration-badge">
+                            ✅ شريك استراتيجي رئيسي
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network Visualization -->
+            <div class="collaboration-hub mb-16">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold mb-4">شبكة التعاون العالمية</h3>
+                    <p class="text-xl opacity-90">ربط جميع الجهات الفاعلة لتحقيق أقصى تأثير</p>
+                </div>
+
+                <div class="relative h-64 mb-8">
+                    <!-- Network Nodes -->
+                    <div class="network-node" style="top: 20%; left: 20%;">الأمم المتحدة</div>
+                    <div class="network-node" style="top: 20%; right: 20%;">الحكومات</div>
+                    <div class="network-node" style="bottom: 20%; left: 20%;">المنظمات غير الحكومية</div>
+                    <div class="network-node" style="bottom: 20%; right: 20%;">القطاع الخاص</div>
+                    <div class="network-node" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">المنصة</div>
+                    
+                    <!-- Connection Lines -->
+                    <div class="connection-line" style="top: 30%; left: 30%; width: 40%; transform: rotate(0deg);"></div>
+                    <div class="connection-line" style="top: 50%; left: 30%; width: 40%; transform: rotate(45deg);"></div>
+                    <div class="connection-line" style="bottom: 30%; left: 30%; width: 40%; transform: rotate(90deg);"></div>
+                    <div class="connection-line" style="bottom: 30%; right: 30%; width: 40%; transform: rotate(135deg);"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">🤝</div>
+                        <div class="font-bold">تنسيق فعال</div>
+                        <div class="text-sm opacity-90">تجنب التكرار</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">📊</div>
+                        <div class="font-bold">مشاركة البيانات</div>
+                        <div class="text-sm opacity-90">في الوقت الفعلي</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">⚡</div>
+                        <div class="font-bold">الاستجابة السريعة</div>
+                        <div class="text-sm opacity-90">خلال 24 ساعة</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">🎯</div>
+                        <div class="font-bold">الاستهداف الدقيق</div>
+                        <div class="text-sm opacity-90">المناطق الأكثر احتياجاً</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Sharing Calculator -->
+    <section id="integration" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">حاسبة الموارد المشتركة</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    حساب الفائدة المشتركة من الشراكات وتحسين توزيع الموارد
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Calculator Interface -->
+                <div class="resource-calculator">
+                    <h3 class="text-2xl font-bold mb-8 text-center">حساب الفائدة المشتركة</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">نوع المورد</label>
+                            <select id="resource-type" class="w-full p-3 rounded-lg text-gray-900">
+                                <option value="food">الغذاء</option>
+                                <option value="money">التمويل</option>
+                                <option value="logistics">الخدمات اللوجستية</option>
+                                <option value="expertise">الخبرة الفنية</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">الكمية المتاحة</label>
+                            <input type="number" id="resource-amount" class="w-full p-3 rounded-lg text-gray-900" placeholder="أدخل الكمية">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">عدد الشركاء</label>
+                            <input type="number" id="partners-count-input" class="w-full p-3 rounded-lg text-gray-900" value="3" min="2" max="10">
+                        </div>
+                        
+                        <button onclick="calculateBenefit()" class="w-full bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors">
+                            احسب الفائدة المشتركة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results Display -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">نتائج الحساب</h3>
+                    
+                    <div id="calculation-results" class="space-y-6">
+                        <div class="text-center text-gray-500 py-12">
+                            <div class="text-4xl mb-4">🧮</div>
+                            <p>أدخل البيانات واضغط على زر الحساب</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">قصص النجاح</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    أمثلة واقعية على تأثير الشراكات في مكافحة الجوع وإهدار الطعام
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="success-story">
+                    <div class="flex items-start mb-4">
+                        <div class="text-3xl mr-4">🤝</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">الشراكة مع Win Win</h3>
+                            <p class="text-sm text-green-600 font-medium">الجزائر - 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        تم توفير 150 طن من الطعام الفائض من المطاعم والفنادق الكبرى في الجزائر العاصمة، 
+                        وتوزيعها على 25,000 أسرة محتاجة من خلال تنسيق المنصة مع تطبيق نعمة.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">الأثر الاجتماعي:</div>
+                        <div class="font-bold text-green-600">25,000 أسرة مستفيدة</div>
+                    </div>
+                </div>
+
+                <div class="success-story">
+                    <div class="flex items-start mb-4">
+                        <div class="text-3xl mr-4">🌍</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">التعاون مع FAO</h3>
+                            <p class="text-sm text-green-600 font-medium">الصومال - 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        تم التنبؤ المبكر بمجاعة محتملة في الصومال 4 أشهر مقدماً، مما سمح بتعبئة الموارد 
+                        وتجهيز المساعدات الغذائية قبل وقوع الأزمة، وتجنب كارثة إنسانية.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">الأثر الوقائي:</div>
+                        <div class="font-bold text-green-600">500,000 شخص أنقذوا من المجاعة</div>
+                    </div>
+                </div>
+
+                <div class="success-story">
+                    <div class="flex items-start mb-4">
+                        <div class="text-3xl mr-4">🍽️</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">تطبيق نعمة</h3>
+                            <p class="text-sm text-green-600 font-medium">الجزائر - 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        تم تقليل إهدار الطعام في الجزائر بنسبة 35% من خلال شبكة من 500 مطعم و1000 متطوع 
+                        يستخدمون التطبيق لمشاركة الفائض الغذائي مع الأسر المحتاجة.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">التأثير البيئي:</div>
+                        <div class="font-bold text-green-600">تقليل الانبعاثات بنسبة 35%</div>
+                    </div>
+                </div>
+
+                <div class="success-story">
+                    <div class="flex items-start mb-4">
+                        <div class="text-3xl mr-4">⚡</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">الاستجابة السريعة</h3>
+                            <p class="text-sm text-green-600 font-medium">السودان - 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        تم التنبؤ بنقص غذاء حاد في السودان وتحريك الموارد خلال 48 ساعة فقط، 
+                        مما سمح بتوزيع 1000 طن من المساعدات الغذائية قبل وقوع الأزمة.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">سرعة الاستجابة:</div>
+                        <div class="font-bold text-green-600">48 ساعة فقط</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-2xl font-bold mb-4">🌾 منصة الأمن الغذائي الذكية</div>
+                <p class="text-gray-400 mb-6">
+                    نحو عالم خالٍ من الجوع من خلال التكنولوجيا والتعاون الدولي
+                </p>
+                <div class="text-sm text-gray-500">
+                    © 2025 منصة الأمن الغذائي الذكية. جميع الحقوق محفوظة.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Partnerships Page JavaScript
+        
+        // Animate impact metrics
+        function animateImpactMetrics() {
+            const metrics = [
+                { id: 'partners-count', target: 127 },
+                { id: 'countries-covered', target: 43 },
+                { id: 'beneficiaries', target: 12500000, suffix: '+' },
+                { id: 'food-saved', target: 850000, suffix: ' طن' }
+            ];
+
+            metrics.forEach(metric => {
+                const element = document.getElementById(metric.id);
+                if (element) {
+                    animateCounter(element, 0, metric.target, 2000, metric.suffix || '');
+                }
+            });
+        }
+
+        function animateCounter(element, start, end, duration, suffix = '') {
+            const startTime = performance.now();
+            const animate = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = start + (end - start) * easeOut;
+                
+                if (end > 1000000) {
+                    element.textContent = (current / 1000000).toFixed(1) + 'M' + suffix;
+                } else if (end > 1000) {
+                    element.textContent = (current / 1000).toFixed(0) + 'K' + suffix;
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            };
+            requestAnimationFrame(animate);
+        }
+
+        // Open partner platform
+        function openPartnerPlatform(platform) {
+            const platforms = {
+                'winwin': {
+                    name: 'Win Win Platform',
+                    url: 'https://winwin.app',
+                    description: 'منصة عالمية لمشاركة الموارد وتحقيق الفائدة المشتركة'
+                },
+                'namaa': {
+                    name: 'تطبيق نعمة',
+                    url: 'https://namaa.app',
+                    description: 'تطبيق جزائري لمشاركة الطعام الفائض'
+                },
+                'fao': {
+                    name: 'FAO - المنظمة',
+                    url: 'https://fao.org',
+                    description: 'منظمة الأغذية والزراعة للأمم المتحدة'
+                }
+            };
+
+            const platformInfo = platforms[platform];
+            if (platformInfo) {
+                showPartnerModal(platformInfo);
+            }
+        }
+
+        function showPartnerModal(platform) {
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            
+            const modal = document.createElement('div');
+            modal.className = 'bg-white rounded-2xl p-8 max-w-lg mx-4 text-center';
+            modal.innerHTML = `
+                <div class="text-4xl mb-4">🌐</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">${platform.name}</h3>
+                <p class="text-gray-600 mb-6">${platform.description}</p>
+                <div class="flex gap-4">
+                    <button onclick="window.open('${platform.url}', '_blank')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                        زيارة المنصة
+                    </button>
+                    <button class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 px-6 py-3 rounded-lg font-medium transition-colors" onclick="this.closest('.fixed').remove()">
+                        إغلاق
+                    </button>
+                </div>
+            `;
+            
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+            
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    document.body.removeChild(overlay);
+                }
+            });
+        }
+
+        // Resource sharing calculator
+        function calculateBenefit() {
+            const resourceType = document.getElementById('resource-type').value;
+            const amount = parseFloat(document.getElementById('resource-amount').value);
+            const partners = parseInt(document.getElementById('partners-count-input').value);
+            
+            if (!amount || amount <= 0) {
+                alert('الرجاء إدخال كمية صحيحة');
+                return;
+            }
+
+            const multipliers = {
+                'food': 3.5,
+                'money': 2.8,
+                'logistics': 4.2,
+                'expertise': 5.1
+            };
+
+            const baseImpact = amount * multipliers[resourceType];
+            const collaborationBonus = Math.pow(partners, 0.3);
+            const totalImpact = Math.floor(baseImpact * collaborationBonus);
+            const efficiency = Math.min(95, 60 + (partners * 5));
+            const beneficiaries = Math.floor(totalImpact * 2.3);
+            const wasteReduction = resourceType === 'food' ? Math.floor(amount * 0.85) : Math.floor(amount * 0.3);
+
+            displayResults({
+                resourceType,
+                amount,
+                partners,
+                totalImpact,
+                efficiency,
+                beneficiaries,
+                wasteReduction
+            });
+        }
+
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('calculation-results');
+            const resourceNames = {
+                'food': 'الغذاء',
+                'money': 'التمويل',
+                'logistics': 'الخدمات اللوجستية',
+                'expertise': 'الخبرة الفنية'
+            };
+
+            resultsContainer.innerHTML = `
+                <div class="space-y-6">
+                    <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-xl">
+                        <h4 class="font-bold text-blue-900 mb-4">📊 التأثير المجمع</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-2xl font-bold text-blue-600">${results.totalImpact.toLocaleString()}</div>
+                                <div class="text-sm text-blue-700">وحدة تأثير</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-blue-600">${results.efficiency}%</div>
+                                <div class="text-sm text-blue-700">كفاءة الاستخدام</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-xl">
+                        <h4 class="font-bold text-green-900 mb-4">👥 الأثر الاجتماعي</h4>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600">${results.beneficiaries.toLocaleString()}</div>
+                            <div class="text-sm text-green-700">شخص مستفيد</div>
+                        </div>
+                    </div>
+
+                    ${results.resourceType === 'food' ? `
+                    <div class="bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl">
+                        <h4 class="font-bold text-amber-900 mb-4">🌱 الأثر البيئي</h4>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-amber-600">${results.wasteReduction} طن</div>
+                            <div class="text-sm text-amber-700">تقليل إهدار الطعام</div>
+                        </div>
+                    </div>
+                    ` : ''}
+
+                    <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl">
+                        <h4 class="font-bold text-purple-900 mb-4">💰 العائد الاقتصادي</h4>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600">${Math.floor(results.totalImpact * 0.8).toLocaleString()}</div>
+                            <div class="text-sm text-purple-700">دولار أمريكي وفورات</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button onclick="shareResults()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                            مشاركة النتائج
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function shareResults() {
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            
+            const modal = document.createElement('div');
+            modal.className = 'bg-white rounded-2xl p-8 max-w-md mx-4 text-center';
+            modal.innerHTML = `
+                <div class="text-4xl mb-4">📤</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">مشاركة النتائج</h3>
+                <p class="text-gray-600 mb-6">تم نسخ نتائج الحساب إلى الحافظة لمشاركتها مع الشركاء</p>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors" onclick="this.closest('.fixed').remove()">
+                    حسناً
+                </button>
+            `;
+            
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+            
+            // Copy to clipboard simulation
+            navigator.clipboard.writeText('نتائج حساب الفائدة المشتركة من منصة الأمن الغذائي الذكية');
+            
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 3000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            animateImpactMetrics();
+        });
+		// Mobile menu functionality
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // تغيير الأيقونة عند الفتح/الإغلاق
+        const icon = mobileMenuButton.querySelector('svg');
+        if (mobileMenu.classList.contains('hidden')) {
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+        } else {
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+        }
+    });
+
+    // إغلاق القائمة عند النقر على رابط
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+        });
+    });
+
+    // إغلاق القائمة عند النقر خارجها
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+        }
+    });
+}
+    </script>
+</body>
+</html>
